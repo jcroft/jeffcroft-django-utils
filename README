@@ -1,0 +1,3 @@
+A collection of useful Django snippets I've created and/or collected over the years. Includes some model mixins, some database fields, a few middlewares, and several template tags and filters.
+
+I don't expect this to be particularly useful to others. It's for me, and while you're welcome to check it out and take what it useful to you, I don't intend to respond to feature requests, etc.
