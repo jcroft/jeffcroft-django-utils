@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from jeffcfoft.forms.widgets import *
+from jeffcroft.forms.widgets import *
 from django.forms import ValidationError
 from parsedatetime.parsedatetime import Calendar
 import datetime
