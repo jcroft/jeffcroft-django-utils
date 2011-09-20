@@ -1,0 +1,18 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('#facebook-login-button').live('click', function(e){
+      FB.login(function(response) {
+        if (response.session) {
+          if (response.perms) {
+            window.location.href = "{% url facebook_connect %}{% if next %}?next={{ next|urlencode }}{% endif %}";
+          } else {
+            window.location.href = "{% url facebook_connect %}{% if next %}?next={{ next|urlencode }}{% endif %}";
+          }
+        } else {
+          // user is not logged in
+        }
+      }, {perms:'publish_stream,email'});
+    });
+  });
+</script>
+<img id="facebook-login-button" src="http://developers.facebook.com/images/devsite/login-button.png" />
