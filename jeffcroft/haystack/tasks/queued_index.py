@@ -13,6 +13,7 @@ class SearchIndexUpdateTask(Task):
     max_retries = 1
 
     def run(self, app_name, model_name, pk, **kwargs):
+        raise Exception("got to task")
         logger = self.get_logger(**kwargs)
         try:
             model_class = get_model(app_name, model_name)
