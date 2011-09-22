@@ -7,10 +7,10 @@ from celery.task import Task, PeriodicTask
 from celery.task.schedules import crontab
 
 class SearchIndexUpdateTask(Task):
-    name = "search.index.update"
-    routing_key = 'search.index.update'
-    default_retry_delay = 5 * 60
-    max_retries = 1
+    # name = "search.index.update"
+    # routing_key = 'search.index.update'
+    # default_retry_delay = 5 * 60
+    # max_retries = 1
 
     def run(self, app_name, model_name, pk, **kwargs):
         logger = self.get_logger(**kwargs)
