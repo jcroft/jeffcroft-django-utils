@@ -32,6 +32,7 @@ class QueuedSearchIndex(indexes.SearchIndex):
         signals.post_delete.disconnect(self.enqueue_delete, sender=model)
 
     def enqueue_save(self, instance, **kwargs):
+        raise Exception("got to enqueue")
         SearchIndexUpdateTask.delay(instance._meta.app_label, instance._meta.module_name, instance._get_pk_val())
 
     def enqueue_delete(self, instance, **kwargs):
