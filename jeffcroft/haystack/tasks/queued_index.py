@@ -20,6 +20,7 @@ class SearchIndexUpdateTask(Task):
             instance = model_class.objects.get(pk=pk)
             search_index = site.get_index(model_class)
             search_index.update_object(instance)
+            print "update search index"
             logger.info("Updating search index for %s " % instance.title)
         except Exception, exc:
             logger.error(exc)
