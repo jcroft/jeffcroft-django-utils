@@ -13,13 +13,13 @@ class SearchIndexUpdateTask(Task):
     max_retries = 1
 
     def run(self, app_name, model_name, pk, **kwargs):
-        logger = self.get_logger(**kwargs)
+        logger = self.get_logger()
         try:
             model_class = get_model(app_name, model_name)
             instance = model_class.objects.get(pk=pk)
             search_index = site.get_index(model_class)
             search_index.update_object(instance)
-            logger.info("Updating search index for %s " % instance.title)
+            logger.info("Updating search index for %s " % instance)
         except Exception, exc:
             logger.error(exc)
             self.retry([app_name, model_name, pk], kwargs, exc=exc)
