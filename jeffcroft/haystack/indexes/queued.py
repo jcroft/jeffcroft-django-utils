@@ -20,7 +20,6 @@ class QueuedSearchIndex(indexes.SearchIndex):
     """
     # We override the built-in _setup_* methods to connect the enqueuing operation.
     def _setup_save(self, model):
-        raise Exception("got to setup")
         signals.post_save.connect(self.enqueue_save, sender=model)
 
     def _setup_delete(self, model):
