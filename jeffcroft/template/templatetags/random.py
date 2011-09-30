@@ -1,5 +1,10 @@
 import random as random_module
 
+from django import template
+ 
+register = template.Library()
+
+@register.filter
 def several_random(value, arg=1):
   "Returns one or more random item(s) from the list"
   try:
