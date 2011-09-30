@@ -1,7 +1,5 @@
-import random as random_module
-
 from django import template
- 
+
 register = template.Library()
 
 @register.filter
