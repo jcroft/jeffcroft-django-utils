@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from jeffcroft.forms.widgets import *
 from django.forms import ValidationError
-from parsedatetime.parsedatetime import Calendar
+from parsedatetime import Calendar
 import datetime
 
 # These values, if given to to_python(), will trigger the self.required check.
