@@ -1,8 +1,13 @@
 from django.http import HttpResponse, HttpResponseBadRequest
-from parsedatetime import Calendar
+
 import datetime
 from django.utils import simplejson as json
 from django.utils.dateformat import format
+
+try:
+  from parsedatetime import Calendar
+except ImportError:
+  from parsedatetime.parsedatetime import Calendar
 
 def fuzzydtparse(request):
     """

@@ -2,9 +2,14 @@ from django import forms
 from django.forms.widgets import Input, MultiWidget
 from django.utils.safestring import mark_safe
 from django.utils.dateformat import format, time_format
-from parsedatetime import Calendar
+
 import datetime
 import simplejson
+
+try:
+  from parsedatetime import Calendar
+except ImportError:
+  from parsedatetime.parsedatetime import Calendar
 
 class AutoCompleteInput(forms.TextInput):
   def __init__(self, attrs=None, items=[], multiple=False):
