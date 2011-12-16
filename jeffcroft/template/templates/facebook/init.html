@@ -8,10 +8,6 @@
       xfbml  : true  // parse XFBML
     });
     
-    FB.Event.subscribe('auth.login', function(response) {
-      window.location.href = "{% url facebook_connect %}?next={{ next }}";
-    });
-    
   };
 
   (function() {
