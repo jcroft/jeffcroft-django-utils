@@ -197,7 +197,7 @@ except ImportError:
 from django.db import models
 from django.utils.encoding import force_unicode
 
-from picklefield import DEFAULT_PROTOCOL
+DEFAULT_PROTOCOL = 2
 
 class PickledObject(str):
     """
