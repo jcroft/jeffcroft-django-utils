@@ -24,4 +24,4 @@ def get_links(value):
       raise template.TemplateSyntaxError, "Error in {% get_links %} filter: The Python BeautifulSoup and/or urllib2 libraries aren't installed."
     return value
   soup = BeautifulSoup(value)
-  return [ {'href': a.get('href'), 'title': a.get('title') } for a in soup.findAll('a') ]
+  return [ {'href': a.get('href'), 'title': a.get('title', a.text) } for a in soup.findAll('a') ]
