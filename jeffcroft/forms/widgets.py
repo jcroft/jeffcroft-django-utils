@@ -167,3 +167,41 @@ class SplitNaturalDateTimeWidget(MultiWidget):
         if value:
             return [value.date(), value.time().replace(microsecond=0)]
         return [None, None]
+
+
+
+
+class AutocompleteFromExistingEntriesInput(forms.TextInput):
+
+  def __init__(self, queryset, field_name, *args, **kwargs):
+    super(AutocompleteFromExistingEntriesInput, self).__init__(*args, **kwargs)
+    self.queryset = queryset
+    self.field_name = field_name
+
+  def render(self, name, value, attrs=None):
+    output = super(AutocompleteFromExistingEntriesInput, self).render(name, value, attrs=attrs)
+    items = self.get_existing_entries(self.queryset, self.field_name)
+    item_json = simplejson.dumps(items, ensure_ascii=False)
+    return output + mark_safe(u'''
+      <script type="text/javascript">
+        if(typeof(jQuery) === "function"){
+          jQuery("#id_%s").autocomplete(%s, {
+            max: 10,
+            highlight: false,
+            multiple: false,
+            multipleSeparator: ", ",
+            scroll: true,
+            scrollHeight: 300,
+            matchContains: true,
+            autoFill: false,
+            selectFirst: false,
+          });
+        }
+      </script>
+    ''' % (name, item_json))
+
+  def get_existing_entries(self, queryset, field_name):
+    entries = queryset.values_list(field_name, flat=True)
+
+    # Return the entries, while removing duplicates.
+    return list(set(entries))
