@@ -2,9 +2,9 @@ from django import forms
 from django.forms.widgets import Input, MultiWidget
 from django.utils.safestring import mark_safe
 from django.utils.dateformat import format, time_format
+from django.utils import simplejson
 
 import datetime
-import simplejson
 
 try:
   from parsedatetime import Calendar
