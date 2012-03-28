@@ -6,10 +6,9 @@ from django.utils import simplejson
 
 import datetime
 
-try:
-  from parsedatetime import Calendar
-except ImportError:
-  from parsedatetime.parsedatetime import Calendar
+
+
+
 
 class AutoCompleteInput(forms.TextInput):
   def __init__(self, attrs=None, items=[], multiple=False):
