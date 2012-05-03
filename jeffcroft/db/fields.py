@@ -294,7 +294,7 @@ class PickledObjectField(models.Field):
                     raise
         return value
 
-    def get_db_prep_value(self, value):
+    def get_db_prep_value(self, value, connection, prepared):
         """
         Pickle and b64encode the object, optionally compressing it.
 
