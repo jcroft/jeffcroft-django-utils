@@ -32,7 +32,7 @@ def _replace_entity(m):
   return unichr(val)
 
 @register.filter
-def deconde_entities(value):
+def decode_entities(value):
   """ 
   Replaces HTML entities with unicode equivalents. 
   Ampersands, quotes and carets are not replaced. 
