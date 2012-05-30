@@ -24,6 +24,7 @@ def unescape(value):
 
 
 def _replace_entity(m): 
+  from htmlentitydefs import name2codepoint 
   entity = m.group(3) 
   if m.group(1) == '#': 
       val = int(entity, m.group(2) == '' and 10 or 16) 
