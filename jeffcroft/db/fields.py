@@ -25,7 +25,7 @@ class CreationDateTimeField(models.DateTimeField):
   def __init__(self, *args, **kwargs):
     kwargs.setdefault('editable', False)
     kwargs.setdefault('blank', True)
-    kwargs.setdefault('default', datetime.datetime.now)
+    kwargs.setdefault('default', datetime.datetime.utcnow)
     models.DateTimeField.__init__(self, *args, **kwargs)
   
   def get_internal_type(self):
@@ -42,7 +42,7 @@ class ModificationDateTimeField(CreationDateTimeField):
   """
   
   def pre_save(self, model, add):
-    value = datetime.datetime.now()
+    value = datetime.datetime.utcnow()
     setattr(model, self.attname, value)
     return value
   
