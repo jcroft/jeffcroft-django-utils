@@ -19,13 +19,11 @@ except ImportError:
 
 class CreationDateTimeField(models.DateTimeField):
   """
-  By default, sets editable=False, blank=True, default=datetime.now
+  Sets editable=False, blank=True, auto_now_add=True
   """
   
   def __init__(self, *args, **kwargs):
-    kwargs.setdefault('editable', False)
-    kwargs.setdefault('blank', True)
-    kwargs.setdefault('default', datetime.datetime.utcnow)
+    kwargs.setdefault('auto_now_add', True)
     models.DateTimeField.__init__(self, *args, **kwargs)
   
   def get_internal_type(self):
@@ -35,16 +33,14 @@ if add_introspection_rules:
   add_introspection_rules([], ["^jeffcroft\.db\.fields\.CreationDateTimeField"])
 
 
-class ModificationDateTimeField(CreationDateTimeField):
+class ModificationDateTimeField(models.DateTimeField):
   """ 
-  By default, sets editable=False, blank=True, default=datetime.now
-  Sets value to datetime.now() on each save of the model.
+    Sets editable=False, blank=True, auto_now=True
   """
   
-  def pre_save(self, model, add):
-    value = datetime.datetime.utcnow()
-    setattr(model, self.attname, value)
-    return value
+  def __init__(self, *args, **kwargs):
+    kwargs.setdefault('auto_now_add', True)
+    models.DateTimeField.__init__(self, *args, **kwargs)
   
   def get_internal_type(self):
     return "DateTimeField"
